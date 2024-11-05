@@ -16,7 +16,7 @@ console.log('Hell');
 1. Webブラウザでlocalhost:8080/public/janken.htmlにアクセスする
 1. 自分の手で入力する
 
-##　図の描画
+## 図の描画
 ```mermaid
 flowchart TD;
 開始 --> 終了;
