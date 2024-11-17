@@ -48,9 +48,9 @@ app.get("/janken", (req, res) => {
     (hand === 'パー' && cpu === 'グー')
   ) {
     judgement = '勝ち';
-    win += 1;  // 勝った場合、勝利数を増やす
+    win += 1;  
   } else {
-    judgement = '負け';  // 負けの場合
+    judgement = '負け';  
   }
   
   total += 1;
@@ -62,6 +62,36 @@ app.get("/janken", (req, res) => {
     total: total
   }
   res.render( 'janken', display );
+});
+
+app.get("/guess",(req, res) => {
+  let guess = req.query.guess;
+  console.log( {guess});
+  const num = Math.floor( Math.random() * 10 + 1 );
+  let cpu = '';
+  if( num==1 ) cpu = '1';
+  else if( num==2 ) cpu = '2';
+  else if( num==3 ) cpu = '3';
+  else if( num==4 ) cpu = '4';
+  else if( num==5 ) cpu = '5';
+  else if( num==6 ) cpu = '6';
+  else if( num==7 ) cpu = '7';
+  else if( num==8 ) cpu = '8';
+  else if( num==9 ) cpu = '9';
+  else cpu = '10';
+  let judgement = '';
+  if(guess == cpu){
+    judgement = '正解！'
+  } else {
+    judgement = '不正解'
+  }
+  const display = {
+    your: guess,
+    cpu: cpu,
+    judgement: judgement,
+    
+  }
+  res.render( 'guess', display );
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
