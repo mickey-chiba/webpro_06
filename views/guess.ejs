@@ -5,11 +5,14 @@
     <title>数当てゲーム</title>
 </head>
 <body>
+    <p>あなたの予想は<%= your %>です．</p>
+    <p>コンピュータは<%= cpu %>です．</p>
+    <p>判定：<%= judgement %></p>
+    <hr>
     <form action="/guess">
         <input type="text" name="guess" required>
         <label for="guess">1から10の数字を予想してください</label>
         <input type="submit" values="予想">
-        
-    </form>
+    </form>   
 </body>
 </html>

@@ -94,4 +94,28 @@ app.get("/guess",(req, res) => {
   res.render( 'guess', display );
 });
 
+app.get("/course",(req, res) => {
+  let course = req.query.course;
+  console.log( {course});
+  const num = Math.floor( Math.random() * 4 + 1 );
+  let cpu = '';
+  if( num==1 ) cpu = '↑';
+  else if( num==2 ) cpu = '→';
+  else if( num==3 ) cpu = '←';
+  else cpu = '↓';
+  let judgement = '';
+  if(course == cpu){
+    judgement = '勝ち'
+  } else {
+    judgement = '負け'
+  }
+  const display = {
+    your: course,
+    cpu: cpu,
+    judgement: judgement,
+    
+  }
+  res.render( 'course', display );
+});
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
