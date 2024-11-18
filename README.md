@@ -146,13 +146,13 @@ flowchart TD;
 start["開始"];
 end1["終了"]
 if{"条件に合うか"}
-win["勝ち"]
-loose["負け"]
+correct["正解"]
+incorrect["不正解"]
 start --> if
-if -->|yes| win
-win --> end1
-if --> |no| loose
-loose --> end1
+if -->|yes| correct
+correct --> end1
+if --> |no| incorrect
+incorrect --> end1
 
 ```
 3.あっち向いてホイ
@@ -162,12 +162,12 @@ flowchart TD;
 start["開始"];
 end1["終了"]
 if{"条件に合うか"}
-correct["正解"]
-incorrect["不正解"]
+win["勝ち"]
+loose["負け"]
 start --> if
-if -->|yes| correct
-correct --> end1
-if --> |no| incorrect
-incorrect --> end1
+if -->|yes| win
+win --> end1
+if --> |no| loose
+loose --> end1
 
 ```
