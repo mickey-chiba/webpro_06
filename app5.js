@@ -67,18 +67,13 @@ app.get("/janken", (req, res) => {
 app.get("/guess",(req, res) => {
   let guess = req.query.guess;
   console.log( {guess});
-  const num = Math.floor( Math.random() * 10 + 1 );
+  const num = Math.floor( Math.random() * 5 + 1 );
   let cpu = '';
   if( num==1 ) cpu = '1';
   else if( num==2 ) cpu = '2';
   else if( num==3 ) cpu = '3';
   else if( num==4 ) cpu = '4';
-  else if( num==5 ) cpu = '5';
-  else if( num==6 ) cpu = '6';
-  else if( num==7 ) cpu = '7';
-  else if( num==8 ) cpu = '8';
-  else if( num==9 ) cpu = '9';
-  else cpu = '10';
+  else cpu = '5';
   let judgement = '';
   if(guess == cpu){
     judgement = '正解！'
