@@ -139,7 +139,7 @@ if -->|no| loose
 loose --> game
 game --> end1
 ```
-2.数当てゲーム，あっち向いてホイ
+2.数当てゲーム
 ```mermaid
 flowchart TD;
 
@@ -153,5 +153,21 @@ if -->|yes| win
 win --> end1
 if --> |no| loose
 loose --> end1
+
+```
+3.あっち向いてホイ
+```mermaid
+flowchart TD;
+
+start["開始"];
+end1["終了"]
+if{"条件に合うか"}
+correct["正解"]
+incorrect["不正解"]
+start --> if
+if -->|yes| correct
+correct --> end1
+if --> |no| incorrect
+incorrect --> end1
 
 ```
