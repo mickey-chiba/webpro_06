@@ -109,19 +109,6 @@ app.get("/course",(req, res) => {
 1. ```add5.js``` を起動する
 1. Webブラウザでlocalhost:8080/public/janken.htmlにアクセスする
 1. 自分の手を入力する
-
-## 数当てゲームを行うための手順
-1. ```add5.js``` を起動する
-1. Webブラウザでlocalhost:8080/public/guess.htmlにアクセスする
-1. 数(1~5)を予想して入力する
-
-## あっち向いてホイを行うための手順
-1. ```add5.js``` を起動する
-1. Webブラウザでlocalhost:8080/public/course.htmlにアクセスする
-1. 方向(→，←，↑，↓)を予想して入力する
-
-## ゲームのフローチャート
-1.じゃんけん
 ```mermaid
 flowchart TD;
 
@@ -139,7 +126,10 @@ if -->|no| loose
 loose --> game
 game --> end1
 ```
-2.数当てゲーム
+## 数当てゲームを行うための手順
+1. ```add5.js``` を起動する
+1. Webブラウザでlocalhost:8080/public/guess.htmlにアクセスする
+1. 数(1~5)を予想して入力する
 ```mermaid
 flowchart TD;
 
@@ -155,7 +145,10 @@ if --> |no| incorrect
 incorrect --> end1
 
 ```
-3.あっち向いてホイ
+## あっち向いてホイを行うための手順
+1. ```add5.js``` を起動する
+1. Webブラウザでlocalhost:8080/public/course.htmlにアクセスする
+1. 方向(→，←，↑，↓)を予想して入力する
 ```mermaid
 flowchart TD;
 
@@ -171,3 +164,4 @@ if --> |no| loose
 loose --> end1
 
 ```
+
