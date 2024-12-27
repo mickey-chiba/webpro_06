@@ -108,7 +108,7 @@ app.get("/course",(req, res) => {
 ## じゃんけんを行うための手順
 1. ```add5.js``` を起動する
 1. Webブラウザでlocalhost:8080/public/janken.htmlにアクセスする
-1. 自分の手を入力する
+1. グー，チョキ，パーのいずれかを入力する入力する
 ```mermaid
 flowchart TD;
 
