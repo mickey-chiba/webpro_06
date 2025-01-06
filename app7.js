@@ -117,5 +117,50 @@ app.post("/delete", (req, res) => {
     res.json({ success: false, message: "Invalid index" });
   }
 });
+// メッセージ表示と削除ボタンの生成
+async function loadMessages() {
+  const response = await fetch('http://localhost:8080/read', {
+    method: 'POST',
+    body: JSON.stringify({ start: 0 }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+
+  const data = await response.json();
+  const bbsDiv = document.getElementById('bbs');
+  bbsDiv.innerHTML = ''; // 既存のメッセージをクリア
+
+  data.messages.forEach((message, index) => {
+    // メッセージと削除ボタンを表示
+    const messageDiv = document.createElement('div');
+    messageDiv.innerHTML = `
+      <strong>${message.name}</strong>: ${message.message} 
+      <button onclick="deletePost(${index})">削除</button>
+    `;
+    bbsDiv.appendChild(messageDiv);
+  });
+}
+
+// 投稿削除処理
+async function deletePost(index) {
+  const response = await fetch('http://localhost:8080/delete', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ index: index })
+  });
+
+  const data = await response.json();
+
+  if (data.success) {
+    alert("投稿が削除されました！");
+    loadMessages();  // 削除後にメッセージを再読み込み
+  } else {
+    alert("削除に失敗しました: " + data.message);
+  }
+}
+
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
