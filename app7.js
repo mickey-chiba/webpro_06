@@ -105,4 +105,17 @@ app.post("/post", (req, res) => {
   res.json( {number: bbs.length } );
 });
 
+//投稿削除
+app.post("/delete", (req, res) => {
+  const index = Number(req.body.index);  
+  console.log("delete -> " + index);
+  
+  if (index >= 0 && index < bbs.length) {
+    bbs.splice(index, 1);  
+    res.json({ success: true, number: bbs.length });
+  } else {
+    res.json({ success: false, message: "Invalid index" });
+  }
+});
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
