@@ -99,68 +99,53 @@ app.post("/read", (req, res) => {
 app.post("/post", (req, res) => {
   const name = req.body.name;
   const message = req.body.message;
+  const newID = bbs.length + 1;
   console.log( [name, message] );
   // 本来はここでDBMSに保存する
-  bbs.push( { name: name, message: message } );
+  bbs.push( { id: newID, name: name, message: message } );
   res.json( {number: bbs.length } );
 });
 
 //投稿削除
-app.post("/delete", (req, res) => {
-  const index = Number(req.body.index);  
-  console.log("delete -> " + index);
-  
-  if (index >= 0 && index < bbs.length) {
-    bbs.splice(index, 1);  
-    res.json({ success: true, number: bbs.length });
+app.delete("/bbs/:id", (req,res) => {
+  const id = Number(req.params.id);
+  const index = bbs.findIndex(post => post.id === id);
+  if (index !== -1) {
+    bbs.splice(index, 1); 
+    console.log(`投稿ID ${id} が削除されました`);
+    res.json({ success: true });  
   } else {
-    res.json({ success: false, message: "Invalid index" });
+    console.log(`投稿ID ${id} が見つかりません`);
+    res.json({ success: false }); 
   }
 });
-// メッセージ表示と削除ボタンの生成
-async function loadMessages() {
-  const response = await fetch('http://localhost:8080/read', {
-    method: 'POST',
-    body: JSON.stringify({ start: 0 }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
 
-  const data = await response.json();
-  const bbsDiv = document.getElementById('bbs');
-  bbsDiv.innerHTML = ''; // 既存のメッセージをクリア
-
-  data.messages.forEach((message, index) => {
-    // メッセージと削除ボタンを表示
-    const messageDiv = document.createElement('div');
-    messageDiv.innerHTML = `
-      <strong>${message.name}</strong>: ${message.message} 
-      <button onclick="deletePost(${index})">削除</button>
-    `;
-    bbsDiv.appendChild(messageDiv);
-  });
-}
-
-// 投稿削除処理
-async function deletePost(index) {
-  const response = await fetch('http://localhost:8080/delete', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ index: index })
-  });
-
-  const data = await response.json();
-
-  if (data.success) {
-    alert("投稿が削除されました！");
-    loadMessages();  // 削除後にメッセージを再読み込み
+//投稿編集
+app.put("/bbs/:id", (req, res) => {
+  const id = Number(req.params.id); 
+  console.log(`受け取ったID: ${id}`);   
+  const newMessage = req.body.message;
+  const newName = req.body.name;
+  console.log(`番号: ID=${id}, 新しいメッセージ=${newMessage}, 新しい名前=${newName}`);
+ 
+  let post = bbs.find(post => post.id === id);
+  if (post) {
+    post.message = newMessage;
+    if (newName) {
+      post.name = newName;
+    } 
+    console.log(`投稿ID ${id} が更新されました。新しいメッセージ: ${newMessage}`);
+    res.json({ message: "投稿が更新されました", success: true });
   } else {
-    alert("削除に失敗しました: " + data.message);
+    console.log(`投稿ID ${id} が見つかりません`);
+    res.json({ message: "指定されたIDの投稿が見つかりません", success: false });
   }
-}
+});
+
+
+
+
+
 
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
