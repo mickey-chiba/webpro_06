@@ -43,13 +43,14 @@ app.get("/janken", (req, res) => {
   console.log( {hand, win, total});
   const num = Math.floor( Math.random() * 3 + 1 );
   let cpu = '';
-  let judgement = '';
+  
   if( num==1 ) cpu = 'グー';
   else if( num==2 ) cpu = 'チョキ';
   else cpu = 'パー';
   // ここに勝敗の判定を入れる
   // 以下の数行は人間の勝ちの場合の処理なので，
   // 判定に沿ってあいこと負けの処理を追加する
+  let judgement = '';
   if (hand === cpu) {
     judgement = '引き分け';
   } else if (
