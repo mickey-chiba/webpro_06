@@ -50,8 +50,19 @@ app.get("/janken", (req, res) => {
   // ここに勝敗の判定を入れる
   // 以下の数行は人間の勝ちの場合の処理なので，
   // 判定に沿ってあいこと負けの処理を追加する
-  judgement = '勝ち';
-  win += 1;
+  if (hand === cpu) {
+    judgement = '引き分け';
+  } else if (
+    (hand === 'グー' && cpu === 'チョキ') ||
+    (hand === 'チョキ' && cpu === 'パー') ||
+    (hand === 'パー' && cpu === 'グー')
+  ) {
+    judgement = '勝ち';
+    win += 1;  
+  } else {
+    judgement = '負け';  
+  }
+  
   total += 1;
   const display = {
     your: hand,
