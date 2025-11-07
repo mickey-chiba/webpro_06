@@ -100,8 +100,6 @@ app.get("/keiyo_add", (req, res) => {
   station.push( newdata );
   res.render('db1', { data: station });
   res.redirect('/public/keiyo_add.html');
-
-
 });
 
 
