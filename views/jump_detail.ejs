@@ -1,0 +1,21 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= data.title %></title>
+</head>
+<body>
+  <h2><%= data.title %>の詳細</h2>
+  <table>
+    <tr><th>項目</th><th>データ</th></tr>
+    <tr><td>ID</td><td><%= data.id %></td></tr>
+    <tr><td>作品名</td><td><%= data.title %></td></tr>
+    <tr><td>連載開始年</td><td><%= data.start_year %></td></tr>
+    <tr><td>作者</td><td><%= data.author %></td></tr>
+    <tr><td>連載状況</td><td><%= data.status %></td></tr>
+    <tr><td>ジャンル</td><td><%= data.genre %></td></tr>
+  </table>
+  <a href="/jump/edit/<%= id %>">編集</a>
+  <a href="/jump">作品一覧に戻る</a>
+</body>
+</html>

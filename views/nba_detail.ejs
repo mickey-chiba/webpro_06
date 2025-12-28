@@ -1,0 +1,19 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= data.name %></title>
+</head>
+<body>
+  <h2><%= data.name %>の詳細</h2>
+  <table>
+    <tr><th>項目</th><th>データ</th></tr>
+    <tr><td>チーム名</td><td><%= data.name %></td></tr>
+    <tr><td>創設年</td><td><%= data.year %></td></tr>
+    <tr><td>所属カンファレンス</td><td><%= data.conference %></td></tr>
+    <tr><td>優勝回数</td><td><%= data.championships %></td></tr>
+  </table>
+  <a href="/nba/edit/<%= id %>">編集</a>
+  <a href="/nba">NBAチーム一覧に戻る</a>
+</body>
+</html>

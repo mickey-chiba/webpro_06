@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ラーメン店追加</title>
+</head>
+<body>
+    <h2>ラーメン店を追加</h2>
+    <form action="/ramen" method="POST">
+        <label for="name">店名:</label><br>
+        <input type="text" name="name" id="name" required><br>
+
+        <label for="location">場所:</label><br>
+        <input type="text" name="location" id="location" required><br>
+
+        <label for="author">系統:</label><br>
+        <input type="text" name="genre" id="genre" required><br>
+
+        
+        
+        <input type="submit" value="登録">
+    </form>
+    <br>
+    <a href="/ramen">作品一覧に戻る</a>
+</body>
+</html>

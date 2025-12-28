@@ -1,0 +1,23 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>NBAチームの詳細</title>
+</head>
+<body>
+  <h2>NBAチームの詳細</h2>
+  <table>
+    <tr><th>ID</th><th>所属カンファレンス</th><th>NBAチーム名</th><th>操作</th></tr>
+      <% let number = 0 %>
+      <% for( let row of data ) { %>
+        <tr><td><%= row.id %></td>
+        <td><%= row.conference %></td>
+        <td><a href="/nba/<%= number %>"><%= row.name %></a></td>
+        <td><a href="/nba/delete/<%= number %>"onclick="return confirm('本当に削除しますか？')">削除</a></td>
+        </tr>
+        <% number += 1 %>
+      <% } %>
+  </table>
+  <a href="/nba/create">追加</a>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= data.name %></title>
+</head>
+<body>
+  <h2><%= data.name %>の編集</h2>
+  <form action="/nba/update/<%= data.id - 1 %>" method="POST">
+    <table>
+      <tr><th>項目</th><th>データ</th></tr>
+      
+      <tr><td>チーム名</td><td><input type="text" name="name" value="<%= data.name %>"></td></tr>
+      <tr><td>創設年</td><td><input type="text" name="year" value="<%= data.year %>"></td></tr>
+      <tr><td>所属カンファレンス</td><td><input type="radio" name="conference" value="East" required>East<input type="radio" name="conference" value="West">West</tr> <tr></tr>
+      <tr><td>優勝回数</td><td><input type="number" name="championships" value="<%= data.championships %>"></td></tr>
+  
+
+
+    </table>
+    <input type="submit" values="登録">
+  </form>
+  <a href="/nba/">チーム一覧に戻る</a>
+</body>
+</html>

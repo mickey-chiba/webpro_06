@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ジャンプ作品追加</title>
+</head>
+<body>
+    <h2>ジャンプ作品を追加</h2>
+    <form action="/jump" method="POST">
+        <label for="title">作品名:</label><br>
+        <input type="text" name="title" id="title" required><br>
+
+        <label for="start_year">連載開始年:</label><br>
+        <input type="number" name="start_year" id="start_year" required><br>
+
+        <label for="author">作者:</label><br>
+        <input type="text" name="author" id="author" required><br>
+
+        <label>連載状況:</label><br>
+        <input type="radio" name="status" value="連載中" required>連載中
+        <input type="radio" name="status" value="休載中">休載中
+        <input type="radio" name="status" value="連載終了">連載終了
+        <br>
+
+        <label for="genre">ジャンル:</label><br>
+        <input type="text" name="genre" id="genre" required><br><br>
+
+        <input type="submit" value="登録">
+    </form>
+    <br>
+    <a href="/jump">作品一覧に戻る</a>
+</body>
+</html>
